@@ -107,45 +107,18 @@ def add_to_startup(file_path=""):
     with open(bat_path + '\\' + "open.bat", "w+") as bat_file:
         bat_file.write(r'start "" %s' % file_path)
 
-def ping_internal_computer(hostname, ip):
 
-    response = subprocess.run("ping -n 1 " + ip)
-    #response = os.system("ping -n 1 " + ip)
-
-    #and then check the response...
-    if response == 0:
-        print(hostname, 'is up!')
-    else:
-        error = hostname + " is down"
-        email(error)
-        print(hostname, 'is down!')
-        
 
 def main():
     
-    #add_to_startup()
-    #count = 0
-    #while(True):
+    add_to_startup()
+    while(True):
 
-        #printer_check()
-        #internet_check()
-        #check_system()
-        #count = count + 1
-        #print(count)
-        #time.sleep(30)
-    printer_check()
-    internet_check()
-    check_system()
-    print("")
-    ping_internal_computer("FC-3", "192.168.0.172")
-    print("")
-    ping_internal_computer("FC-2", "192.168.0.168")
-    print("")
-    ping_internal_computer("FC-1", "192.168.0.186")
-    print("")
-    ping_internal_computer("tyler-office", "192.168.0.157")
-        
-        
+        printer_check()
+        internet_check()
+        check_system()
+        time.sleep(180)
+
 
 if __name__ == "__main__":
     main()
