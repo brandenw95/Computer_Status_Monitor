@@ -111,7 +111,7 @@ def add_to_startup(file_path=""):
 
 def main():
     
-    add_to_startup()
+    #add_to_startup()
     while(True):
 
         printer_check()
