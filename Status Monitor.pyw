@@ -23,6 +23,11 @@ PRINTER_ERROR_STATES = (
     win32print.PRINTER_STATUS_PAPER_PROBLEM,
 )
 
+#EMAIL LOGIN INFO
+
+LOGIN_EMAIL_SEND_FROM = "example@example.com"
+LOGIN_EMAIL_SEND_TO = "example@example.com"
+LOGIN_PASSWORD = "Password"
 
 def printer_errorneous_state(printer, error_states=PRINTER_ERROR_STATES):
     prn_opts = win32print.GetPrinter(printer)
@@ -89,12 +94,12 @@ def email(error):
     computer_name = platform.node()
     ip = socket.gethostbyname(computer_name) 
     timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
-    FROM = "branden8570@gmail.com"
-    TO = "branden@prostreet.ca"
+    FROM = LOGIN_EMAIL_SEND_FROM
+    TO = LOGIN_EMAIL_SEND_TO
     msg = "(" + timestamp + ")" + " Error posted below: \n ------------------------------------ \n\n" + error + "\n\n------------------------------------"
     subject = "Something went wrong with " + computer_name + " (" + ip + ")"
 
-    yag = yagmail.SMTP(FROM, 'Branden_2016')
+    yag = yagmail.SMTP(FROM, LOGIN_PASSWORD)
     yag.send(TO, subject, msg)
 
 def add_to_startup(file_path=""):
